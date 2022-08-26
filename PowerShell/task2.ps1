@@ -22,8 +22,8 @@ process{
                         '@abc.com' )).ToLower()
         }
         $AllEmails += $item.email             
-    }
+    } 
     $output_name = "accounts_new.csv"
-    $file | ConvertTo-Csv | Set-Content -Path .\$output_name    # generate new-file
+    $file | ConvertTo-Csv -NoTypeInformation | % {$_ -replace '"',''} |  Set-Content -Path .\$output_name    # generate new-file
     Write-Host "Generate "$output_name "file"
 }
