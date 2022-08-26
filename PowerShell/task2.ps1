@@ -2,6 +2,7 @@
    This script updates column "name" and "emails" 
    in accordance with the task
 #>
+
 param (
     [Parameter(Mandatory=$true)]
     [string]$FileInputPath
@@ -24,6 +25,6 @@ process{
         $AllEmails += $item.email             
     } 
     $output_name = "accounts_new.csv"
-    $file | ConvertTo-Csv -NoTypeInformation | % {$_ -replace '"',''} |  Set-Content -Path .\$output_name    # generate new-file
+    $file | ConvertTo-Csv -NoTypeInformation -UseQuotes AsNeeded| Set-Content -Path .\$output_name    # generate new-file use PS7
     Write-Host "Generate "$output_name "file"
 }
